@@ -1,14 +1,14 @@
 package com.ProjectManagement.ProjectManagement.DTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthResponse {
-    private String jwt;
+public class DashboardResponse {
+    private String username;
+    private String role;
     private String message;
-    private String redirectUrl;
 }

@@ -8,34 +8,48 @@ import lombok.NoArgsConstructor;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "User")
+@AllArgsConstructor
+@Entity
+@Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
+    @Column(unique = true, nullable = false)
     private String username;
-
-    private String password;
-
-    private String Image;
 
     @Column(unique = true, nullable = false)
     private String email;
 
-    private boolean isVerified;
+    @Column(nullable = false)
+    private String password;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private String name;
+
+    @Column(name = "is_verified", nullable = false)
+    private boolean verified;
+
+    @Column(name = "oauth2_provider")
+    private String oauth2Provider;
+
+    @Column(name = "oauth2_provider_id")
+    private String oauth2ProviderId;
+
+    public boolean isOauth2User() {
+        return oauth2Provider != null && !oauth2Provider.isEmpty();
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
+
+
 }

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Verification</title>
+</head>
+<body>
+<h2>Hello, <span th:text="${Name}"></span>!</h2>
+<p>You attempted to log in to your account. Please verify your email address by clicking the link below:</p>
+<p><a th:href="${verificationURL}">Verify Email for Login</a></p>
+<p>This verification link will expire in 24 hours.</p>
+<p>Thank you,</p>
+<p>Your Application Team</p>
+</body>
+</html>

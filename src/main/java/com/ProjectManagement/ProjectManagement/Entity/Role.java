@@ -6,15 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Role")
-public class Role{
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity
+@Table(name = "role")
+public class Role {
+
     @Id
-    private int id;
-    @Column(unique = true,nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(unique = true, nullable = false)
     private String name;
 }
-
